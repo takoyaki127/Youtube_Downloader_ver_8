@@ -7,13 +7,34 @@ class AudioList(RootList):
         super().__init__(list, "audio")
 
     def create_display_list(self):
-        list = [
-            "{:>4}{:>8}kbps{:>8}khz     {}".format(
-                element['itag'],
-                int(element["averageBitrate"]/1000) if "averageBitrate" in element.keys(
-                ) else int(element["bitrate"]/1000),
-                (element["audioSampleRate"][:-3]),
-                element['mimeType']
-            )for element in self.list
+        def bitrate_discrimination(audio_info):
+            avg_bitrate_key: str = "averageBitrate"
+            bitrate_key: str = "bitrate"
+
+            if avg_bitrate_key in audio_info.keys():
+                key: str = avg_bitrate_key
+            else:
+                key: str = bitrate_key
+
+            return int(audio_info[key]/1000)
+
+        def audio_display_list_format(audio_info):
+            format_str: str = "{:>4}{:>8}kbps{:>8}khz     {}"
+
+            # bitrateは"averageBitrate"がない場合があるので判別している
+            itag = audio_info["itag"]
+            bitrate = bitrate_discrimination(audio_info)
+            audio_samplerate = audio_info["audioSampleRate"][:-3]
+            mimetype = audio_info["mimeType"]
+
+            return format_str.format(
+                itag,
+                bitrate,
+                audio_samplerate,
+                mimetype
+            )
+
+        display_list = [
+            audio_display_list_format(audio_info)for audio_info in self.list
         ]
-        return list
+        return display_list

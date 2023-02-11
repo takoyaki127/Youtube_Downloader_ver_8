@@ -8,11 +8,11 @@ class VideoList(RootList):
 
     # 表示する用のリストを生成
     def create_display_list(self):
-        result = [
+        display_list = [
             "{:>4}{:>12}     {:}".format(
                 element['itag'],
                 element["qualityLabel"],
                 element['mimeType']
             )for element in self.list
         ]
-        return result
+        return display_list

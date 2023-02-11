@@ -11,9 +11,9 @@ class Synthesis():
         self.video_bitrate = video.get_bitrate()
         self.audio_bitrate = audio.get_bitrate()
         self.output = dir.getOutput()
-        self.tmp = dir.get_tmp()
-        self.video_path = self.tmp + "\\" + video.file_name
-        self.audio_path = self.tmp + "\\" + audio.file_name
+        tmp = dir.get_tmp()
+        self.video_path = tmp + "\\" + video.file_name
+        self.audio_path = tmp + "\\" + audio.file_name
 
     def synthesis(self, ffmpeg_params=['-vcodec', 'h264_nvenc']):
 

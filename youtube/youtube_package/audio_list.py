@@ -1,17 +1,12 @@
-class AudioList():
+from youtube_package.root_list import RootList
+
+
+class AudioList(RootList):
 
     def __init__(self, list):
-        self.list = self.list_arrange(list)
-        self.display_list = self.set_display_list()
+        super().__init__(list, "audio")
 
-    def list_arrange(self, list):
-        audio_list = [
-            element for element in list if "audio" in element["mimeType"]
-        ]
-        audio_list.sort(key=lambda x: x["bitrate"], reverse=True)
-        return audio_list
-
-    def set_display_list(self):
+    def create_display_list(self):
         list = [
             "{:>4}{:>8}kbps{:>8}khz     {}".format(
                 element['itag'],
@@ -22,6 +17,3 @@ class AudioList():
             )for element in self.list
         ]
         return list
-
-    def get_display_list(self):
-        return self.display_list

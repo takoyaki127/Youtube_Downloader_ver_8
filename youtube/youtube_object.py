@@ -15,9 +15,9 @@ class YoutubeObject(YouTube):
         self.title = self.arrange_title(self.title)
         self.dir = Directory(dir, self.title)
 
-        list = self.streaming_data["adaptiveFormats"]
-        self.video_list = VideoList(list)
-        self.audio_list = AudioList(list)
+        streaming_data_list = self.streaming_data["adaptiveFormats"]
+        self.video_list = VideoList(streaming_data_list)
+        self.audio_list = AudioList(streaming_data_list)
 
     @staticmethod
     def arrange_title(title: str):
@@ -29,14 +29,16 @@ class YoutubeObject(YouTube):
         return result
 
     def download_with_index(self, video_index, audio_index):
-        self.video = Video(self.video_list, video_index)
-        self.audio = Audio(self.audio_list, audio_index)
+        video_info = self.video_list.get_info_with_index(video_index)
+        audio_info = self.audio_list.get_info_with_index(audio_index)
+        self.video = Video(video_info)
+        self.audio = Audio(audio_info)
+
         video_itag = self.video.get_itag()
         audio_itag = self.audio.get_itag()
         output = self.dir.get_tmp()
 
         self.dir.create_tmp_dir()
-
         self.download(video_itag, output, self.video.file_name)
         self.download(audio_itag, output, self.audio.file_name)
 
@@ -45,21 +47,18 @@ class YoutubeObject(YouTube):
             output_path=output, filename=file_name)
 
     def synthesis(self):
-        video = Synthesis(self.video, self.audio, self.dir)
-        video.synthesis()
+        Synthesis(self.video, self.audio, self.dir).synthesis()
 
     def remove(self):
-        tmp = self.dir.get_tmp()
-        video = self.video.file_name
-        audio = self.audio.file_name
+        tmp_dir = self.dir.get_tmp()
 
-        os.remove(tmp + "\\" + video)
-        os.remove(tmp + "\\" + audio)
+        os.remove(tmp_dir + "\\" + self.video.file_name)
+        os.remove(tmp_dir + "\\" + self.audio.file_name)
 
 
 if __name__ == "__main__":
-    link = "https://youtu.be/5tc14WHUoMw"
-    dir = "D:/Downloads/Youtube_Downloads/tmp"
+    link: str = "https://youtu.be/5tc14WHUoMw"
+    dir: str = "D:/Downloads/Youtube_Downloads/tmp"
     object = YoutubeObject(link, dir)
 
     object.download_with_index(0, 0)

@@ -27,7 +27,6 @@ class Application(tk.Tk):
 
     def create_frame4(self):
         self.frame4 = Frame4(self)
-
         self.frame4.btm.set_command(
             self.destroy,
             self.restart

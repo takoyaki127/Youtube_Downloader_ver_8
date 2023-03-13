@@ -56,11 +56,15 @@ class YoutubeObject(YouTube):
         os.remove(tmp_dir + "\\" + self.audio.file_name)
 
 
-if __name__ == "__main__":
-    link: str = "https://youtu.be/5tc14WHUoMw"
-    dir: str = "D:/Downloads/Youtube_Downloads/tmp"
+def main(link, dir):
     object = YoutubeObject(link, dir)
 
     object.download_with_index(0, 0)
     object.synthesis()
     object.remove()
+
+
+if __name__ == "__main__":
+    link: str = input("URLを入力->")
+    dir: str = "D:/Downloads/Youtube_Downloads/tmp"
+    main(link=link, dir=dir)

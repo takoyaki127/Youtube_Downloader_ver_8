@@ -1,4 +1,5 @@
 from youtube_package.root_list import RootList
+from youtube_package.video import Video
 
 
 class VideoList(RootList):
@@ -16,3 +17,6 @@ class VideoList(RootList):
             )for element in self.list
         ]
         return display_list
+
+    def get_video_with_index(self, index):
+        return Video(self.list[index])

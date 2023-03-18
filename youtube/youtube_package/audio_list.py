@@ -1,4 +1,5 @@
 from youtube_package.root_list import RootList
+from youtube_package.audio import Audio
 
 
 class AudioList(RootList):
@@ -38,3 +39,6 @@ class AudioList(RootList):
             audio_display_list_format(audio_info)for audio_info in self.list
         ]
         return display_list
+
+    def get_audio_with_index(self, index):
+        return Audio(self.list[index])

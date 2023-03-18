@@ -21,6 +21,3 @@ class RootList(metaclass=ABCMeta):
 
     def get_display_list(self):
         return self.display_list
-
-    def get_info_with_index(self, index):
-        return self.list[index]

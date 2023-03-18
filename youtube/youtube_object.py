@@ -29,10 +29,8 @@ class YoutubeObject(YouTube):
         return result
 
     def download_with_index(self, video_index, audio_index):
-        video_info = self.video_list.get_info_with_index(video_index)
-        audio_info = self.audio_list.get_info_with_index(audio_index)
-        self.video = Video(video_info)
-        self.audio = Audio(audio_info)
+        self.video = self.video_list.get_video_with_index(video_index)
+        self.audio = self.audio_list.get_audio_with_index(audio_index)
 
         video_itag = self.video.get_itag()
         audio_itag = self.audio.get_itag()

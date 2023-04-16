@@ -5,6 +5,8 @@ from frame.frame2 import Frame2
 from frame.frame3 import Frame3
 from frame.frame4 import Frame4
 
+from youtube.youtube_object import YoutubeObject
+
 
 class Application(tk.Tk):
     def __init__(self):
@@ -15,7 +17,20 @@ class Application(tk.Tk):
 
     def create_frame1(self):
         self.frame1 = Frame1(self)
-        self.frame1.btm.set_command(self.create_frame2)
+        self.frame1.btm.set_command(self.display_frame2)
+
+    def display_frame2(self):
+        try:
+            self.create_video_object()
+        except Exception as e:
+            print("Youtubeオブジェクトの生成に失敗しました。")
+        else:
+            self.create_frame2()
+
+    def create_video_object(self):
+        link = self.frame1.get_url()
+        dir = self.frame1.get_dir()
+        self.object = YoutubeObject(link, dir)
 
     def create_frame2(self):
         self.frame2 = Frame2(self)

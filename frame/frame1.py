@@ -76,3 +76,9 @@ class Frame1(Frame):
             self.url_str.set(self.clipboard_get())
         except Exception:
             print("ペーストできません")
+
+    def get_url(self):
+        return self.url_str.get()
+
+    def get_dir(self):
+        return self.dir_str.get()

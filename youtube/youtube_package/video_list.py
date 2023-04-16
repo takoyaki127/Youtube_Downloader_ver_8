@@ -1,5 +1,5 @@
-from youtube_package.root_list import RootList
-from youtube_package.video import Video
+from youtube.youtube_package.root_list import RootList
+from youtube.youtube_package.video import Video
 
 
 class VideoList(RootList):

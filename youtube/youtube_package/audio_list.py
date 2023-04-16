@@ -1,5 +1,5 @@
-from youtube_package.root_list import RootList
-from youtube_package.audio import Audio
+from youtube.youtube_package.root_list import RootList
+from youtube.youtube_package.audio import Audio
 
 
 class AudioList(RootList):

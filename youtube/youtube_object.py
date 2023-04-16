@@ -1,18 +1,16 @@
 from pytube import YouTube
 import os
 
-from youtube_package.directory import Directory
-from youtube_package.video_list import VideoList
-from youtube_package.audio_list import AudioList
-from youtube_package.video import Video
-from youtube_package.audio import Audio
-from youtube_package.synthesis import Synthesis
+from youtube.youtube_package.directory import Directory
+from youtube.youtube_package.video_list import VideoList
+from youtube.youtube_package.audio_list import AudioList
+from youtube.youtube_package.synthesis import Synthesis
 
 
 class YoutubeObject(YouTube):
     def __init__(self, link, dir):
         super().__init__(link)
-        self.title = self.arrange_title(self.title)
+        self.title = self.title_escape(self.title)
         self.dir = Directory(dir, self.title)
 
         streaming_data_list = self.streaming_data["adaptiveFormats"]
@@ -20,7 +18,7 @@ class YoutubeObject(YouTube):
         self.audio_list = AudioList(streaming_data_list)
 
     @staticmethod
-    def arrange_title(title: str):
+    def title_escape(title: str):
         result = title.translate(str.maketrans({
             "\\": "￥", "/": "／", ":": "：",
             "*": "＊", "?": "？", "\"": "”",

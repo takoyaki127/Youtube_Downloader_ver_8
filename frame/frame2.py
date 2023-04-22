@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from frame.base.BaseFrame import Frame, BottomFrame, MainFrame
+from youtube.youtube_object import YoutubeObject
 
 
 class Frame2(Frame):
@@ -68,3 +69,17 @@ class Frame2(Frame):
         index = self.audio_list.curselection()
         if len(index) == 1:
             self.audio_index = index[0]
+
+    def download(self, youtube: YoutubeObject):
+        youtube.download_with_index(self.video_index, self.audio_index)
+
+    def syntheis(self, youtube: YoutubeObject):
+        youtube.synthesis()
+
+    def remove(self, youtube: YoutubeObject):
+        youtube.remove()
+
+    def setList_with_object(self, youtube: YoutubeObject):
+        video_list = youtube.video_list.get_display_list()
+        audio_list = youtube.audio_list.get_display_list()
+        self.setList(video_list, audio_list)

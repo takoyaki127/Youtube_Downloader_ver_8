@@ -3,6 +3,7 @@ from tkinter import filedialog
 
 from youtube.youtube_package.directory import read_dir
 from frame.base.BaseFrame import Frame, BottomFrame, MainFrame
+from youtube.youtube_object import YoutubeObject
 
 
 class Frame1(Frame):
@@ -82,3 +83,8 @@ class Frame1(Frame):
 
     def get_dir(self):
         return self.dir_str.get()
+
+    def create_object(self):
+        url = self.get_url()
+        dir = self.get_dir()
+        return YoutubeObject(url, dir)

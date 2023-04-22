@@ -1,1 +1,1 @@
-Download_dir=D:/Downloads/Youtube_Downloads/tmp
+Download_dir=D:/Various/Youtube_Downloads

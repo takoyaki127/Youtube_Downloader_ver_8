@@ -20,13 +20,10 @@ class Application(tk.Tk):
 
     def display_frame2(self):
         try:
-            self.create_video_object()
+            self.youtube = self.frame1.create_object()
             self.create_frame2()
         except Exception as e:
             print("Youtubeオブジェクトの生成に失敗しました。")
-
-    def create_video_object(self):
-        self.youtube = self.frame1.create_object()
 
     def create_frame2(self):
         self.frame2 = Frame2(self)

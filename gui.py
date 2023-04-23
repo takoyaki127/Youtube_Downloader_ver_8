@@ -1,5 +1,8 @@
 import tkinter as tk
 from threading import Thread
+from multiprocessing import Process
+
+from youtube.youtube_object import YoutubeObject
 
 from frame.frame1 import Frame1
 from frame.frame2 import Frame2
@@ -21,9 +24,10 @@ class Application(tk.Tk):
     def display_frame2(self):
         try:
             self.youtube = self.frame1.create_object()
-            self.create_frame2()
         except Exception as e:
             print("Youtubeオブジェクトの生成に失敗しました。")
+        else:
+            self.create_frame2()
 
     def create_frame2(self):
         self.frame2 = Frame2(self)
@@ -31,14 +35,24 @@ class Application(tk.Tk):
         self.frame2.setList_with_object(self.youtube)
 
     def display_frame3(self):
-        Thread(target=self.execute, args=(self.youtube,)).start()
-        self.create_frame3()
+        video_index, audio_index = self.frame2.get_index()
+        if video_index != -1 and audio_index != -1:
+            Thread(target=self.display_frame4, args=(
+                video_index, audio_index)).start()
+            self.create_frame3()
 
-    def execute(self, youtube):
-        self.frame2.download(youtube)
-        self.frame2.syntheis(youtube)
-        self.frame2.remove(youtube)
+    def display_frame4(self, video_index, audio_index):
+        p = Process(target=Application.execute, args=(
+            self.youtube, video_index, audio_index))
+        p.start()
+        p.join()
         self.create_frame4()
+
+    @staticmethod
+    def execute(youtube: YoutubeObject, video_index, audio_index):
+        youtube.download_with_index(video_index, audio_index)
+        youtube.synthesis()
+        youtube.remove()
 
     def create_frame3(self):
         self.frame3 = Frame3(self)

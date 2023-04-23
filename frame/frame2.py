@@ -70,14 +70,8 @@ class Frame2(Frame):
         if len(index) == 1:
             self.audio_index = index[0]
 
-    def download(self, youtube: YoutubeObject):
-        youtube.download_with_index(self.video_index, self.audio_index)
-
-    def syntheis(self, youtube: YoutubeObject):
-        youtube.synthesis()
-
-    def remove(self, youtube: YoutubeObject):
-        youtube.remove()
+    def get_index(self):
+        return self.video_index, self.audio_index
 
     def setList_with_object(self, youtube: YoutubeObject):
         video_list = youtube.video_list.get_display_list()

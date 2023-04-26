@@ -1,7 +1,7 @@
 from pytube import YouTube
 import os
 
-from youtube.youtube_package.directory import Directory, write_dir
+from youtube.youtube_package.directory import Directory
 from youtube.youtube_package.video_list import VideoList
 from youtube.youtube_package.audio_list import AudioList
 from youtube.youtube_package.synthesis import Synthesis

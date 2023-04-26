@@ -38,3 +38,6 @@ class Directory():
     def create_tmp_dir(self):
         if not os.path.isdir(self.tmp):
             os.makedirs(self.tmp)
+
+    def write_to_text_file(self):
+        write_dir(self.download)

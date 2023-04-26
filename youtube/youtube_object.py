@@ -1,7 +1,7 @@
 from pytube import YouTube
 import os
 
-from youtube.youtube_package.directory import Directory
+from youtube.youtube_package.directory import Directory, write_dir
 from youtube.youtube_package.video_list import VideoList
 from youtube.youtube_package.audio_list import AudioList
 from youtube.youtube_package.synthesis import Synthesis
@@ -34,6 +34,7 @@ class YoutubeObject(YouTube):
         audio_itag = self.audio.get_itag()
         output = self.dir.get_tmp()
 
+        self.dir.write_to_text_file()
         self.dir.create_tmp_dir()
         self.download(video_itag, output, self.video.file_name)
         self.download(audio_itag, output, self.audio.file_name)

@@ -1,8 +1,8 @@
-from youtube.youtube_package.root_list import RootList
+from youtube.youtube_package.media_list import MediaList
 from youtube.youtube_package.video import Video
 
 
-class VideoList(RootList):
+class VideoList(MediaList):
 
     def __init__(self, list):
         super().__init__(list, "video")

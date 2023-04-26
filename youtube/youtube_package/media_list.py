@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class RootList(metaclass=ABCMeta):
+class MediaList(metaclass=ABCMeta):
     def __init__(self, list, mimeType):
         self.list = self.list_arrange(list, mimeType)
         self.display_list = self.create_display_list()

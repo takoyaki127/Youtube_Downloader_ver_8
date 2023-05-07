@@ -10,7 +10,7 @@ from module.youtube.youtube_package.synthesis import Synthesis
 class YoutubeObject(YouTube):
     def __init__(self, link, dir):
         super().__init__(link)
-        self.title = self.title_escape(self.title)
+        self.title = self._title_escape(self.title)
         self.dir = Directory(dir, self.title)
 
         streaming_data_list = self.streaming_data["adaptiveFormats"]
@@ -18,7 +18,7 @@ class YoutubeObject(YouTube):
         self.audio_list = AudioList(streaming_data_list)
 
     @staticmethod
-    def title_escape(title: str):
+    def _title_escape(title: str):
         result = title.translate(str.maketrans({
             "\\": "￥", "/": "／", ":": "：",
             "*": "＊", "?": "？", "\"": "”",
@@ -36,10 +36,10 @@ class YoutubeObject(YouTube):
 
         self.dir.write_to_text_file()
         self.dir.create_tmp_dir()
-        self.download(video_itag, output, self.video.file_name)
-        self.download(audio_itag, output, self.audio.file_name)
+        self._download(video_itag, output, self.video.file_name)
+        self._download(audio_itag, output, self.audio.file_name)
 
-    def download(self, itag, output, file_name):
+    def _download(self, itag, output, file_name):
         self.streams.get_by_itag(itag).download(
             output_path=output, filename=file_name)
 

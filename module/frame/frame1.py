@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import filedialog
 
-from youtube.youtube_package.directory import read_dir
-from frame.base.BaseFrame import Frame, BottomFrame, MainFrame
-from youtube.youtube_object import YoutubeObject
+from module.youtube.youtube_package.directory import read_dir
+from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
+from module.youtube.youtube_object import YoutubeObject
 
 
 class Frame1(Frame):

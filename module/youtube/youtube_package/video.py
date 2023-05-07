@@ -1,6 +1,3 @@
-# from youtube_package.video_list import VideoList
-
-
 class Video():
     file_name = "movie.mp4"
 

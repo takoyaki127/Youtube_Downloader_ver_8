@@ -1,8 +1,8 @@
 import tkinter as tk
 from multiprocessing import Process
 
-from frame.base.BaseFrame import Frame, BottomFrame, MainFrame
-from youtube.youtube_object import YoutubeObject
+from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
+from module.youtube.youtube_object import YoutubeObject
 
 
 class Frame2(Frame):

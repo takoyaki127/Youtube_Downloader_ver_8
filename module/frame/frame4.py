@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from frame.base.BaseFrame import Frame, BottomFrame, MainFrame
+from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
 
 
 class Frame4(Frame):

@@ -1,5 +1,5 @@
-from youtube.youtube_package.media_list import MediaList
-from youtube.youtube_package.video import Video
+from module.youtube.youtube_package.media_list import MediaList
+from module.youtube.youtube_package.video import Video
 
 
 class VideoList(MediaList):

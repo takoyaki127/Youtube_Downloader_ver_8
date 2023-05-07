@@ -1,10 +1,10 @@
 import tkinter as tk
 from threading import Thread
 
-from frame.frame1 import Frame1
-from frame.frame2 import Frame2
-from frame.frame3 import Frame3
-from frame.frame4 import Frame4
+from module.frame.frame1 import Frame1
+from module.frame.frame2 import Frame2
+from module.frame.frame3 import Frame3
+from module.frame.frame4 import Frame4
 
 
 class Application(tk.Tk):

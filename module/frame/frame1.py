@@ -85,6 +85,17 @@ class Frame1(Frame):
         return self.dir_str.get()
 
     def create_object(self):
+        import time
         url = self.get_url()
         dir = self.get_dir()
-        return YoutubeObject(url, dir)
+        count = 0
+        while True:
+            try:
+                youtube = YoutubeObject(url, dir)
+                break
+            except Exception as e:
+                print(count,e)
+            finally:
+                count += 1
+                time.sleep(0.5)
+        return youtube

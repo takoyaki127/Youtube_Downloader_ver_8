@@ -56,12 +56,3 @@ class Application(tk.Tk):
         self.frame1.url_entry.delete(0, tk.END)
         self.frame2.video_index = -1
         self.frame2.audio_index = -1
-
-
-def main():
-    app = Application()
-    app.mainloop()
-
-
-if __name__ == "__main__":
-    main()

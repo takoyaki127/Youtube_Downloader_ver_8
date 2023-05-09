@@ -10,12 +10,15 @@ class Synthesis():
     def __init__(self, video: Video, audio: Audio, dir: Directory):
         self.video_bitrate = video.get_bitrate()
         self.audio_bitrate = audio.get_bitrate()
+
         self.output = dir.getOutput()
+
         tmp = dir.get_tmp()
         self.video_path = tmp + "\\" + video.file_name
         self.audio_path = tmp + "\\" + audio.file_name
 
-    def execute(self, ffmpeg_params=['-vcodec', 'h264_nvenc']):
+    def execute(self, device="gpu"):
+        ffmpeg_params = self.__set_device(device)
 
         video = VideoFileClip(self.video_path)
         audio = AudioFileClip(self.audio_path)
@@ -27,3 +30,9 @@ class Synthesis():
             audio_bitrate=self.audio_bitrate,
             ffmpeg_params=ffmpeg_params
         )
+
+    def __set_device(self, device):
+        if device == "gpu":
+            return ['-vcodec', 'h264_nvenc']
+
+        return None

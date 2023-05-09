@@ -15,7 +15,7 @@ class Synthesis():
         self.video_path = tmp + "\\" + video.file_name
         self.audio_path = tmp + "\\" + audio.file_name
 
-    def synthesis(self, ffmpeg_params=['-vcodec', 'h264_nvenc']):
+    def execute(self, ffmpeg_params=['-vcodec', 'h264_nvenc']):
 
         video = VideoFileClip(self.video_path)
         audio = AudioFileClip(self.audio_path)

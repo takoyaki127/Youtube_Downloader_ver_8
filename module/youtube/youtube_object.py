@@ -35,7 +35,7 @@ class YoutubeObject(YouTube):
             output_path=output, filename=file_name)
 
     def synthesis(self):
-        Synthesis(self.video, self.audio, self.dir).synthesis()
+        Synthesis(self.video, self.audio, self.dir).execute()
 
     def remove(self):
         tmp_dir = self.dir.get_tmp()

@@ -8,4 +8,5 @@ class Application(tk.Tk):
         super().__init__()
         self.title("YT_downloader")
         self.geometry("600x520")
+
         self.frames = Frames(self)

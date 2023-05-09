@@ -11,11 +11,13 @@ from module.frame.frame4 import Frame4
 
 class Frames():
     def __init__(self, root) -> None:
+        # frameを生成
         self.frame1 = Frame1(root)
         self.frame2 = Frame2(root)
         self.frame3 = Frame3(root)
         self.frame4 = Frame4(root)
 
+        # buttonにメソッドをセット
         self.__set_command(root)
         self.frame1.tkraise()
 
@@ -41,11 +43,13 @@ class Frames():
         self.frame1.tkraise()
         self.frame1.url_entry.delete(0, tk.END)
 
+    # youtubeオブジェクトを作成して表示用リストに追加
     def __create_youtube(self):
         self.youtube = self.frame1.create_object()
         lists = self.youtube.get_display_lists()
         self.frame2.setList(lists[0], lists[1])
 
+    # マルチプロセスでダウンロードを実行
     def execute_download(self):
         if self.frame2.canDownload():
             p = self.frame2.create_process(self.youtube)
@@ -53,6 +57,7 @@ class Frames():
             self.__display_frame3()
             Thread(target=self.wait, args=(p,)).start()
 
+    # ダウンロードの終了を待機
     def wait(self, p):
         p.join()
         self.__display_frame4()

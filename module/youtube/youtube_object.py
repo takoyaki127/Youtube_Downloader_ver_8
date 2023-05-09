@@ -1,5 +1,6 @@
 from pytube import YouTube
 import os
+from multiprocessing import Process
 
 from module.youtube.youtube_package.directory import Directory
 from module.youtube.youtube_package.synthesis import Synthesis
@@ -42,6 +43,20 @@ class YoutubeObject(YouTube):
 
         os.remove(tmp_dir + "\\" + self.video.file_name)
         os.remove(tmp_dir + "\\" + self.audio.file_name)
+
+    def get_display_lists(self):
+        return (
+            self.video_list.get_display_list(),
+            self.audio_list.get_display_list()
+        )
+
+    def execute(self, video_index, audio_index):
+        self.download_with_index(video_index, audio_index)
+        self.synthesis()
+        self.remove()
+
+    def prepare_multiprocessing(self,video_index,audio_index):
+        return Process(target=self.execute,args=(video_index,audio_index))
 
 
 def main(link, dir):

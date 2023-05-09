@@ -2,8 +2,8 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 
 from module.youtube.youtube_package.directory import Directory
-from module.youtube.youtube_package.video import Video
-from module.youtube.youtube_package.audio import Audio
+from module.youtube.youtube_package.media.video import Video
+from module.youtube.youtube_package.media.audio import Audio
 
 from module.youtube.youtube_package.synthesis.device import Device
 

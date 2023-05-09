@@ -1,5 +1,5 @@
 from module.youtube.youtube_package.list.media_list import MediaList
-from module.youtube.youtube_package.audio import Audio
+from module.youtube.youtube_package.media.audio import Audio
 
 
 class AudioList(MediaList):

@@ -3,7 +3,7 @@ import os
 from multiprocessing import Process
 
 from module.youtube.youtube_package.directory import Directory
-from module.youtube.youtube_package.synthesis import Synthesis
+from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 from module.youtube.youtube_package.list.create_list import CreateList
 from module.youtube.youtube_package.title.title import Title
 

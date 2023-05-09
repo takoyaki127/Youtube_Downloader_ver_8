@@ -30,6 +30,7 @@ class YoutubeObject(YouTube):
 
         self.dir.write_to_text_file()
         self.dir.create_tmp_dir()
+        
         self._download(video_itag, output, self.video.file_name)
         self._download(audio_itag, output, self.audio.file_name)
 

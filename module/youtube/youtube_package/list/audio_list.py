@@ -1,4 +1,4 @@
-from module.youtube.youtube_package.media_list import MediaList
+from module.youtube.youtube_package.list.media_list import MediaList
 from module.youtube.youtube_package.audio import Audio
 
 

@@ -1,5 +1,4 @@
 import tkinter as tk
-from multiprocessing import Process
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
 from module.youtube.youtube_object import YoutubeObject
@@ -8,11 +7,9 @@ from module.youtube.youtube_object import YoutubeObject
 class Frame2(Frame):
     def __init__(self, root=None, bg=None):
         super().__init__(root, bg)
-        self.youtube = root.youtube
         self.video_index = -1
         self.audio_index = -1
         self.create_widget()
-        self.setList_with_object()
 
     def set_youtube(self, youtube: YoutubeObject):
         self.youtube = youtube
@@ -79,25 +76,15 @@ class Frame2(Frame):
     def get_index(self):
         return self.video_index, self.audio_index
 
-    def setList_with_object(self):
-        video_list = self.youtube.video_list.get_display_list()
-        audio_list = self.youtube.audio_list.get_display_list()
-        self.setList(video_list, audio_list)
-
-    def prepare_multiprocessing(self):
-        return Process(target=Frame2.execute, args=(
-            self.youtube,
+    def create_process(self,youtube:YoutubeObject):
+        return youtube.prepare_multiprocessing(
             self.video_index,
             self.audio_index
-        ))
-
-    @staticmethod
-    def execute(youtube: YoutubeObject, video_index, audio_index):
-        youtube.download_with_index(video_index, audio_index)
-        youtube.synthesis()
-        youtube.remove()
+        )
 
     def canDownload(self):
         if self.video_index != -1 and self.audio_index != -1:
             return True
         return False
+
+

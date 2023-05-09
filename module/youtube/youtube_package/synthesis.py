@@ -1,9 +1,15 @@
+from enum import Enum
 from moviepy.video.io.VideoFileClip import VideoFileClip
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 
 from module.youtube.youtube_package.directory import Directory
 from module.youtube.youtube_package.video import Video
 from module.youtube.youtube_package.audio import Audio
+
+
+class Device(Enum):
+    GPU = auto()
+    CPU = auto()
 
 
 class Synthesis():
@@ -17,7 +23,7 @@ class Synthesis():
         self.video_path = tmp + "\\" + video.file_name
         self.audio_path = tmp + "\\" + audio.file_name
 
-    def execute(self, device="gpu"):
+    def execute(self, device=Device.GPU):
         ffmpeg_params = self.__set_device(device)
 
         video = VideoFileClip(self.video_path)
@@ -32,7 +38,7 @@ class Synthesis():
         )
 
     def __set_device(self, device):
-        if device == "gpu":
+        if device == Device.GPU:
             return ['-vcodec', 'h264_nvenc']
 
         return None

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 
-from module.youtube.youtube_package.directory import read_dir
+from module.youtube.youtube_package.settings import Settings
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
 from module.youtube.youtube_object import YoutubeObject
 
@@ -9,7 +9,7 @@ from module.youtube.youtube_object import YoutubeObject
 class Frame1(Frame):
     def __init__(self, root=None, bg=None):
         super().__init__(root, bg)
-        default_dir = read_dir()
+        default_dir = Settings.read_dir()
         self.create_widget(default_dir)
 
     def create_widget(self, default_dir):

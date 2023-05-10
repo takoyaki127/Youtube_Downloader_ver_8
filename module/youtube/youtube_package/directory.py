@@ -18,5 +18,5 @@ class Directory():
         if not os.path.isdir(self.tmp):
             os.makedirs(self.tmp)
 
-    def write_to_text_file(self):
+    def write_to_settings(self):
         Settings.write_dir(self.download)

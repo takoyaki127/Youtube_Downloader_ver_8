@@ -7,6 +7,8 @@ from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 from module.youtube.youtube_package.list.create_list import CreateList
 from module.youtube.youtube_package.title.title import Title
 
+from module.youtube.youtube_package.download.download import Download
+
 
 class YoutubeObject(YouTube):
     def __init__(self, link, dir):
@@ -21,23 +23,17 @@ class YoutubeObject(YouTube):
 
     # インデックスを使ってダウンロード
     def download_with_index(self, video_index, audio_index):
-        self.video = self.video_list.get_video_with_index(video_index)
-        self.audio = self.audio_list.get_audio_with_index(audio_index)
-
-        video_itag = self.video.get_itag()
-        audio_itag = self.audio.get_itag()
         output = self.dir.get_tmp()
+        media = Download(self.streams,output)
 
-        self.dir.write_to_text_file()
-        self.dir.create_tmp_dir()
+        self.video = self.video_list.get_video_with_index(video_index,media)
+        self.video.download()
         
-        self._download(video_itag, output, self.video.file_name)
-        self._download(audio_itag, output, self.audio.file_name)
+        self.audio = self.audio_list.get_audio_with_index(audio_index, media)
+        self.audio.download()
 
-    # itagを使ってダウンロード
-    def _download(self, itag, output, file_name):
-        self.streams.get_by_itag(itag).download(
-            output_path=output, filename=file_name)
+        self.dir.write_to_settings()
+        self.dir.create_tmp_dir()
 
     # 動画ファイルと音声ファイルを合成
     def synthesis(self):

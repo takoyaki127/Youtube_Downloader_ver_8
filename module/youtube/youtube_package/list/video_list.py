@@ -18,5 +18,5 @@ class VideoList(MediaList):
         ]
         return display_list
 
-    def get_video_with_index(self, index):
-        return Video(self.list[index])
+    def get_video_with_index(self, index, media):
+        return Video(self.list[index], media)

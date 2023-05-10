@@ -40,5 +40,5 @@ class AudioList(MediaList):
         ]
         return display_list
 
-    def get_audio_with_index(self, index):
-        return Audio(self.list[index])
+    def get_audio_with_index(self, index, media):
+        return Audio(self.list[index], media)

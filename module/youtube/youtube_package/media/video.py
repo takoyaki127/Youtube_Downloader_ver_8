@@ -1,8 +1,5 @@
-# from module.youtube.youtube_package.media.media import Media
-from media import Media
-
-# from module.youtube.youtube_package.download.download import Download
-from download.download import Download
+from module.youtube.youtube_package.media.media import Media
+from module.youtube.youtube_package.download.download import Download
 
 
 class Video(Media):
@@ -16,9 +13,3 @@ class Video(Media):
 
     def set_filename(self):
         return Video.file_name
-
-
-if __name__ == "__main__":
-    dict_ = {"itag": 10, "bitrate": 10}
-    video = Video(dict_)
-    pass

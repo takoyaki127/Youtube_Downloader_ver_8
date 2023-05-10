@@ -1,6 +1,4 @@
 from module.youtube.youtube_package.media.media import Media
-# from media import Media
-
 from module.youtube.youtube_package.download.download import Download
 
 class Audio(Media):
@@ -27,9 +25,3 @@ class Audio(Media):
     
     def set_filename(self):
         return Audio.file_name
-
-if __name__ == "__main__":
-    dict_ = {"itag": 10, "averageBitrate": 10}
-    audio = Audio(dict_)
-    print(audio.get_bitrate())
-    pass

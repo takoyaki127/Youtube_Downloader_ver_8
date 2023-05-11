@@ -86,21 +86,4 @@ class Frame1(Frame):
 
     # youtube objectが作成されるまで100回ループ
     def create_object(self):
-        import time
-        from pytube.exceptions import RegexMatchError
-        url = self.get_url()
-        dir = self.get_dir()
-        count = 0
-        while count < 100:
-            try:
-                youtube = YoutubeObject(url, dir)
-                break
-            except RegexMatchError as e:
-                print(e)
-                break
-            except Exception as e:
-                print(f"{count: >3}",e)
-            finally:
-                count += 1
-                time.sleep(0.3)
-        return youtube
+        return YoutubeObject(self.get_url(), self.get_dir())

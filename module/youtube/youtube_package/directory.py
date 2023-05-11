@@ -1,5 +1,7 @@
 import os
 from module.youtube.youtube_package.settings import Settings
+from module.youtube.youtube_package.download.download import Download
+from module.youtube.youtube_package.media.media import Media
 
 
 class Directory():
@@ -20,3 +22,9 @@ class Directory():
 
     def write_to_settings(self):
         Settings.write_dir(self.download)
+
+    def get_download_obj(self, stream):
+        return Download(stream, self.tmp)
+
+    def remove_tmp(self, media: Media):
+        media.remove(self.tmp)

@@ -7,8 +7,6 @@ from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 from module.youtube.youtube_package.list.create_list import CreateList
 from module.youtube.youtube_package.title.title import Title
 
-from module.youtube.youtube_package.download.download import Download
-
 
 class YoutubeObject(YouTube):
     def __init__(self, link, dir):
@@ -17,19 +15,16 @@ class YoutubeObject(YouTube):
         self.dir = Directory(dir, self.title)
 
         # リストを作成
-        cl = CreateList(self.streaming_data)
+        cl = CreateList(self.streaming_data,self.streams,self.dir)
         self.video_list = cl.video()
         self.audio_list = cl.audio()
 
     # インデックスを使ってダウンロード
     def download_with_index(self, video_index, audio_index):
-        output = self.dir.get_tmp()
-        media = Download(self.streams,output)
-
-        self.video = self.video_list.get_video_with_index(video_index,media)
+        self.video = self.video_list.get_video_with_index(video_index)
         self.video.download()
         
-        self.audio = self.audio_list.get_audio_with_index(audio_index, media)
+        self.audio = self.audio_list.get_audio_with_index(audio_index)
         self.audio.download()
 
         self.dir.write_to_settings()
@@ -41,14 +36,12 @@ class YoutubeObject(YouTube):
 
     # 合成前に使ったファイルを削除
     def remove(self):
-        tmp_dir = self.dir.get_tmp()
-
-        os.remove(tmp_dir + "\\" + self.video.file_name)
-        os.remove(tmp_dir + "\\" + self.audio.file_name)
+        self.dir.remove_tmp(self.video)
+        self.dir.remove_tmp(self.audio)
 
     # ディスプレイリストをtuple(video_list, audio_list)で返す
-    def get_display_lists(self):
-        return (
+    def display_lists_set_to(self,frame):
+        frame.setList(
             self.video_list.get_display_list(),
             self.audio_list.get_display_list()
         )

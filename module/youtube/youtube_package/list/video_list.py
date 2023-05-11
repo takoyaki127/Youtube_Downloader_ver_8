@@ -4,8 +4,8 @@ from module.youtube.youtube_package.media.video import Video
 
 class VideoList(MediaList):
 
-    def __init__(self, list):
-        super().__init__(list, "video")
+    def __init__(self, list, download):
+        super().__init__(list, "video", download)
 
     # 表示する用のリストを生成
     def create_display_list(self):
@@ -18,5 +18,5 @@ class VideoList(MediaList):
         ]
         return display_list
 
-    def get_video_with_index(self, index, media):
-        return Video(self.list[index], media)
+    def get_video_with_index(self, index):
+        return Video(self.list[index], self.download)

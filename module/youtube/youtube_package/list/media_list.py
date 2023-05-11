@@ -2,9 +2,10 @@ from abc import ABCMeta, abstractmethod
 
 
 class MediaList(metaclass=ABCMeta):
-    def __init__(self, list, mimeType):
+    def __init__(self, list, mimeType, download):
         self.list = self.list_arrange(list, mimeType)
         self.display_list = self.create_display_list()
+        self.download = download
 
     # mimeTypeには"video"か"audio"を入力
     def list_arrange(self, original_list, mimeType):

@@ -4,8 +4,8 @@ from module.youtube.youtube_package.media.audio import Audio
 
 class AudioList(MediaList):
 
-    def __init__(self, list):
-        super().__init__(list, "audio")
+    def __init__(self, list, download):
+        super().__init__(list, "audio", download)
 
     def create_display_list(self):
         def bitrate_discrimination(audio_info):
@@ -40,5 +40,5 @@ class AudioList(MediaList):
         ]
         return display_list
 
-    def get_audio_with_index(self, index, media):
-        return Audio(self.list[index], media)
+    def get_audio_with_index(self, index):
+        return Audio(self.list[index], self.download)

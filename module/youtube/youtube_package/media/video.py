@@ -5,8 +5,8 @@ from module.youtube.youtube_package.download.download import Download
 class Video(Media):
     file_name = "movie.mp4"
 
-    def __init__(self, info: dict, media: Download):
-        super().__init__(info, media)
+    def __init__(self, info: dict, download: Download):
+        super().__init__(info, download)
 
     def set_bitrate(self, info: dict):
         return f"{info['bitrate']/1000}k"

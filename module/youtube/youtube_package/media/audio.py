@@ -4,8 +4,8 @@ from module.youtube.youtube_package.download.download import Download
 class Audio(Media):
     file_name = "audio.m4a"
 
-    def __init__(self, info: dict, media:Download):
-        super().__init__(info, media)
+    def __init__(self, info: dict, download:Download):
+        super().__init__(info, download)
 
     def set_bitrate(self, info):
         key1: str = "averageBitrate"

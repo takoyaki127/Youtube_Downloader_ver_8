@@ -2,13 +2,21 @@ import os
 from module.youtube.youtube_package.settings import Settings
 from module.youtube.youtube_package.download.download import Download
 from module.youtube.youtube_package.media.media import Media
+from module.youtube.youtube_package.title.title import Title
 
 
 class Directory():
     def __init__(self, download, title):
         self.download = download
         self.tmp = self.download + r"\tmp"
-        self.output = self.download + "\\" + title + ".mp4"
+        self.output = self.create_output(title)
+
+    def create_output(self, title):
+        title = self.title_escape(title)
+        return self.download + "\\" + title + ".mp4"
+
+    def title_escape(self, title):
+        return Title.escape(title)
 
     def get_tmp(self) -> str:
         return self.tmp

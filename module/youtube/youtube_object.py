@@ -1,17 +1,14 @@
 from pytube import YouTube
-import os
 from multiprocessing import Process
 
 from module.youtube.youtube_package.directory import Directory
 from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 from module.youtube.youtube_package.list.create_list import CreateList
-from module.youtube.youtube_package.title.title import Title
 
 
 class YoutubeObject(YouTube):
     def __init__(self, link, dir):
         super().__init__(link)
-        self.title = Title.escape(self.title)
         self.dir = Directory(dir, self.title)
 
         # リストを作成
@@ -21,14 +18,14 @@ class YoutubeObject(YouTube):
 
     # インデックスを使ってダウンロード
     def download_with_index(self, video_index, audio_index):
+        self.dir.write_to_settings() # settings.txtを作成
+        self.dir.create_tmp_dir()
+
         self.video = self.video_list.get_video_with_index(video_index)
         self.video.download()
         
         self.audio = self.audio_list.get_audio_with_index(audio_index)
         self.audio.download()
-
-        self.dir.write_to_settings()
-        self.dir.create_tmp_dir()
 
     # 動画ファイルと音声ファイルを合成
     def synthesis(self):
@@ -56,16 +53,3 @@ class YoutubeObject(YouTube):
     def prepare_multiprocessing(self,video_index,audio_index):
         return Process(target=self.execute,args=(video_index,audio_index))
 
-
-def main(link, dir):
-    object = YoutubeObject(link, dir)
-
-    object.download_with_index(0, 0)
-    object.synthesis()
-    object.remove()
-
-
-if __name__ == "__main__":
-    link: str = input("URLを入力->")
-    dir: str = "D:/Downloads/Youtube_Downloads/tmp"
-    main(link=link, dir=dir)

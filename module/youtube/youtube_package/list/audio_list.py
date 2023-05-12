@@ -20,7 +20,7 @@ class AudioList(MediaList):
             return int(audio_info[key]/1000)
 
         def audio_display_list_format(audio_info):
-            format_str: str = "{:>4}{:>8}kbps{:>8}khz     {}"
+            format_str: str = "{:>4}{:>8}kbps{:>8}khz{:^20}{:<40}"
 
             # bitrateは"averageBitrate"がない場合があるので判別している
             itag = audio_info["itag"]
@@ -32,13 +32,20 @@ class AudioList(MediaList):
                 itag,
                 bitrate,
                 audio_samplerate,
-                mimetype
+                AudioList.__mimetype_arrange(mimetype,0),
+                AudioList.__mimetype_arrange(mimetype,1)
             )
+        
+    
 
         display_list = [
             audio_display_list_format(audio_info)for audio_info in self.list
         ]
         return display_list
+    
+    @staticmethod
+    def __mimetype_arrange(mimetype:str, n):
+        return mimetype.split(';')[n]
 
     def get_audio_with_index(self, index):
         return Audio(self.list[index], self.download)

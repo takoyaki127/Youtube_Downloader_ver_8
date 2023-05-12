@@ -2,7 +2,7 @@ from pytube import YouTube
 from multiprocessing import Process
 
 from module.youtube.youtube_package.directory import Directory
-from module.youtube.youtube_package.synthesis.synthesis import Synthesis
+from module.youtube.youtube_package.synthesis.synthesis2 import Synthesis
 from module.youtube.youtube_package.list.create_list import CreateList
 
 
@@ -29,7 +29,8 @@ class YoutubeObject(YouTube):
 
     # 動画ファイルと音声ファイルを合成
     def synthesis(self):
-        Synthesis(self.video, self.audio, self.dir).execute()
+        synthesis = self.dir.synthesis_obj()
+        synthesis.execute(self.video, self.audio)
 
     # 合成前に使ったファイルを削除
     def remove(self):

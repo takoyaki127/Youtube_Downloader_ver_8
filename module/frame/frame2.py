@@ -25,8 +25,8 @@ class Frame2(Frame):
         video_frame = tk.Frame(main)
         video_frame.pack(expand=1, fill='both')
 
-        video_label = tk.Label(video_frame, text='動画リスト', font=label_font)
-        video_label.pack(anchor='nw')
+        self.video_label = tk.Label(video_frame, text='動画リスト', font=label_font)
+        self.video_label.pack(anchor='nw')
 
         self.video_list = tk.Listbox(
             video_frame,
@@ -39,8 +39,8 @@ class Frame2(Frame):
         audio_frame = tk.Frame(main)
         audio_frame.pack(expand=1, fill='both')
 
-        audio_label = tk.Label(audio_frame, text='音声リスト', font=label_font)
-        audio_label.pack(anchor='nw')
+        self.audio_label = tk.Label(audio_frame, text='音声リスト', font=label_font)
+        self.audio_label.pack(anchor='nw')
 
         self.audio_list = tk.Listbox(
             audio_frame,
@@ -51,6 +51,12 @@ class Frame2(Frame):
 
         self.video_list.bind('<<ListboxSelect>>', self.set_video_index)
         self.audio_list.bind('<<ListboxSelect>>', self.set_audio_index)
+
+    def update_video_label(self):
+        self.video_label["text"] = f"動画リスト index= {self.video_index}"
+
+    def update_audio_label(self):
+        self.audio_label["text"] = f"音声リスト index= {self.audio_index}"
 
     def setList(self, videoList, audioList):
         self.resetList()
@@ -67,11 +73,13 @@ class Frame2(Frame):
         index = self.video_list.curselection()
         if len(index) == 1:
             self.video_index = index[0]
+            self.update_video_label()
 
     def set_audio_index(self, event):
         index = self.audio_list.curselection()
         if len(index) == 1:
             self.audio_index = index[0]
+            self.update_audio_label()
 
     def get_index(self):
         return self.video_index, self.audio_index

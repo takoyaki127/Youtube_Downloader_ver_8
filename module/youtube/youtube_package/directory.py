@@ -3,6 +3,7 @@ from module.youtube.youtube_package.settings import Settings
 from module.youtube.youtube_package.download.download import Download
 from module.youtube.youtube_package.media.media import Media
 from module.youtube.youtube_package.title.title import Title
+from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 
 
 class Directory():
@@ -36,3 +37,6 @@ class Directory():
 
     def remove_tmp(self, media: Media):
         media.remove(self.tmp)
+
+    def synthesis_obj(self):
+        return Synthesis(self.tmp, self.output)

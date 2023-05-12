@@ -1,35 +1,27 @@
 from moviepy.video.io.VideoFileClip import VideoFileClip
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 
-from module.youtube.youtube_package.directory import Directory
+from module.youtube.youtube_package.synthesis.device import Device
 from module.youtube.youtube_package.media.video import Video
 from module.youtube.youtube_package.media.audio import Audio
 
-from module.youtube.youtube_package.synthesis.device import Device
-
 
 class Synthesis():
-    def __init__(self, video: Video, audio: Audio, dir: Directory):
-        self.video_bitrate = video.get_bitrate()
-        self.audio_bitrate = audio.get_bitrate()
+    def __init__(self, tmp, output):
+        self.tmp = tmp
+        self.output = output
 
-        self.output = dir.getOutput()
-
-        tmp = dir.get_tmp()
-        self.video_path = tmp + "\\" + video.file_name
-        self.audio_path = tmp + "\\" + audio.file_name
-
-    def execute(self, device=Device.GPU):
+    def execute(self, video_info: Video, audio_info: Audio, device=Device.GPU):
         ffmpeg_params = self.__set_device(device)
 
-        video = VideoFileClip(self.video_path)
-        audio = AudioFileClip(self.audio_path)
+        video = VideoFileClip(self.tmp + "\\" + video_info.file_name)
+        audio = AudioFileClip(self.tmp + "\\" + audio_info.file_name)
         video: VideoFileClip = video.set_audio(audio)
 
         video.write_videofile(
             self.output,
-            bitrate=self.video_bitrate,
-            audio_bitrate=self.audio_bitrate,
+            bitrate=video_info.get_bitrate(),
+            audio_bitrate=audio_info.get_bitrate(),
             ffmpeg_params=ffmpeg_params
         )
 

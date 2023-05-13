@@ -16,5 +16,5 @@ class Video(Media):
     def file_clip(self, tmp):
         return VideoFileClip(tmp + "\\" + self.filename)
     
-    def synthesis_start(self, synthesis, audio:Audio, ffmpeg_params):
-        audio.synthesis_start(synthesis, self.bitrate, ffmpeg_params)
+    def synthesis_state(self, audio:Audio):
+        return audio.synthesis_state(self.bitrate)

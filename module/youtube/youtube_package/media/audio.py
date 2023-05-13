@@ -2,6 +2,8 @@ from module.youtube.youtube_package.media.media import Media
 from module.youtube.youtube_package.download.download import Download
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 
+from module.youtube.youtube_package.synthesis.synthesis_state import SynthesisState
+
 
 class Audio(Media):
     file_name = "audio.m4a"
@@ -38,5 +40,5 @@ class Audio(Media):
     def get_sampling_rate(self):
         return self.__sampling_rate
     
-    def synthesis_start(self, synthesis, video_bitrate, ffmpeg_params):
-        synthesis.write(video_bitrate, self.bitrate, self.__sampling_rate, ffmpeg_params)
+    def synthesis_state(self, video_bitrate):
+        return SynthesisState(video_bitrate, self.bitrate, self.__sampling_rate)

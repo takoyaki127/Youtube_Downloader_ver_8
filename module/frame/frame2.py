@@ -87,7 +87,7 @@ class Frame2(Frame):
             self.update_audio_label()
 
     def create_process(self,youtube:YoutubeObject):
-        return youtube.prepare_multiprocessing(
+        return youtube.prepare_execute_process(
             self.video_index,
             self.audio_index
         )

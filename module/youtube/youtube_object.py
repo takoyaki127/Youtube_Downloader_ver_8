@@ -48,6 +48,6 @@ class YoutubeObject(YouTube):
         self.__remove()
 
     # ダウンロードから削除までの一通りを行うプロセスを作成
-    def prepare_multiprocessing(self,video_index,audio_index):
+    def prepare_execute_process(self,video_index,audio_index):
         return Process(target=self.execute,args=(video_index,audio_index))
 

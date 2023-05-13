@@ -86,9 +86,6 @@ class Frame2(Frame):
             self.audio_index = index[0]
             self.update_audio_label()
 
-    def get_index(self):
-        return self.video_index, self.audio_index
-
     def create_process(self,youtube:YoutubeObject):
         return youtube.prepare_multiprocessing(
             self.video_index,

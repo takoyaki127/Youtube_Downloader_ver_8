@@ -19,17 +19,11 @@ class Directory():
     def title_escape(self, title):
         return Title.escape(title)
 
-    def get_tmp(self) -> str:
-        return self.tmp
-
-    def getOutput(self):
-        return self.output
-
-    def create_tmp_dir(self):
+    def create_tmp(self):
         if not os.path.isdir(self.tmp):
             os.makedirs(self.tmp)
 
-    def write_to_settings(self):
+    def write_settings(self):
         Settings.write_dir(self.download)
 
     def get_download_obj(self, stream):

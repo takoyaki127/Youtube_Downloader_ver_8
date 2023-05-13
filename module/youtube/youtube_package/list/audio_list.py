@@ -1,7 +1,6 @@
 from module.youtube.youtube_package.list.media_list import MediaList
 from module.youtube.youtube_package.media.audio import Audio
 
-
 class AudioList(MediaList):
 
     def __init__(self, list, download):
@@ -47,5 +46,8 @@ class AudioList(MediaList):
     def __mimetype_arrange(mimetype:str, n):
         return mimetype.split(';')[n]
 
-    def get_audio_with_index(self, index):
+    def get_audio(self, index):
         return Audio(self.list[index], self.download)
+    
+    def set_list(self,frame):
+        frame.set_audio_list(self.display_list)

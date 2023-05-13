@@ -23,5 +23,8 @@ class VideoList(MediaList):
     def __mimetype_arrange(mimetype:str, n):
         return mimetype.split(';')[n]
 
-    def get_video_with_index(self, index):
+    def get_video(self, index):
         return Video(self.list[index], self.download)
+    
+    def set_list(self,frame):
+        frame.set_video_list(self.display_list)

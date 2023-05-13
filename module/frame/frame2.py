@@ -57,16 +57,21 @@ class Frame2(Frame):
 
     def update_audio_label(self):
         self.audio_label["text"] = f"音声リスト index= {self.audio_index}"
-
-    def setList(self, videoList, audioList):
-        self.resetList()
-        for element in videoList:
+    
+    def set_video_list(self,video_list):
+        self.reset_video_list()
+        for element in video_list:
             self.video_list.insert(tk.END, element)
-        for element in audioList:
+
+    def set_audio_list(self,audio_list):
+        self.reset_audio_list()
+        for element in audio_list:
             self.audio_list.insert(tk.END, element)
 
-    def resetList(self):
+    def reset_video_list(self):
         self.video_list.delete(0, tk.END)
+
+    def reset_audio_list(self):
         self.audio_list.delete(0, tk.END)
 
     def set_video_index(self, event):

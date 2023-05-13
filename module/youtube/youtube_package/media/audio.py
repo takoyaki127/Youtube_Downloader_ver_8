@@ -1,11 +1,12 @@
 from module.youtube.youtube_package.media.media import Media
 from module.youtube.youtube_package.download.download import Download
+from moviepy.audio.io.AudioFileClip import AudioFileClip
 
 class Audio(Media):
     file_name = "audio.m4a"
 
     def __init__(self, info: dict, download:Download):
-        super().__init__(info, download)
+        super().__init__(info, download, Audio.file_name)
 
     def set_bitrate(self, info):
         key1: str = "averageBitrate"
@@ -23,5 +24,5 @@ class Audio(Media):
 
         return f"{bitrate/1000}k"
     
-    def set_filename(self):
-        return Audio.file_name
+    def file_clip(self, tmp):
+        return AudioFileClip(tmp + "\\" + self.filename)

@@ -5,10 +5,10 @@ from module.youtube.youtube_package.download.download import Download
 
 
 class Media(metaclass=ABCMeta):
-    def __init__(self, info: dict, download_info: Download):
+    def __init__(self, info: dict, download_info: Download, filename):
         self.itag = self.__set_itag(info)
         self.bitrate = self.set_bitrate(info)
-        self.filename = self.set_filename()
+        self.filename = filename
         self.download_info = download_info
 
     def __set_itag(self, info: dict):
@@ -18,18 +18,15 @@ class Media(metaclass=ABCMeta):
     def set_bitrate(self, info: dict):
         pass
 
-    @abstractmethod
-    def set_filename(self):
-        pass
-
     def download(self):
         self.download_info.download(self.itag, self.filename)
-
-    def get_itag(self):
-        return self.itag
 
     def get_bitrate(self):
         return self.bitrate
 
     def remove(self, tmp_dir):
         os.remove(tmp_dir + "\\" + self.filename)
+
+    @abstractmethod
+    def file_clip(self, tmp):
+        pass

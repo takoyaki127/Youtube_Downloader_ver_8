@@ -2,6 +2,7 @@ from module.youtube.youtube_package.media.media import Media
 from module.youtube.youtube_package.download.download import Download
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
+from module.youtube.youtube_package.media.audio import Audio
 
 class Video(Media):
     file_name = "movie.mp4"
@@ -14,3 +15,6 @@ class Video(Media):
 
     def file_clip(self, tmp):
         return VideoFileClip(tmp + "\\" + self.filename)
+    
+    def synthesis_start(self, synthesis, audio:Audio, ffmpeg_params):
+        audio.synthesis_start(synthesis, self.bitrate, ffmpeg_params)

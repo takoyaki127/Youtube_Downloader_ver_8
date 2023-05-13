@@ -29,5 +29,5 @@ class Directory():
     def remove_tmp(self, media: Media):
         media.remove(self.__tmp)
 
-    def synthesis_obj(self):
-        return Synthesis(self.__tmp, self.__output)
+    def synthesis_obj(self, video, audio):
+        return Synthesis(self.__tmp, self.__output, video, audio)

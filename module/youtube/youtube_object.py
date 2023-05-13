@@ -28,8 +28,8 @@ class YoutubeObject(YouTube):
 
     # 動画ファイルと音声ファイルを合成
     def __synthesis(self):
-        synthesis = self.dir.synthesis_obj()
-        synthesis.execute(self.video, self.audio)
+        synthesis = self.dir.synthesis_obj(self.video, self.audio)
+        synthesis.execute()
 
     # 合成前に使ったファイルを削除
     def __remove(self):

@@ -3,19 +3,18 @@ import os
 class Settings():
 
     @staticmethod
-    def read_dir():
+    def read_dir() -> str:
         filePath = './settings.txt'
         if os.path.isfile(filePath) == True:
             with open(filePath, 'r', encoding='utf-8') as f:
-                str = f.read()
-                str_list = str.split('=')
+                str_ = f.read()
+                str_list = str_.split('=')
                 dl_dir = str_list[1]
-        else:
-            dl_dir = ""
-        return dl_dir
+                return dl_dir
+        return ""
 
     @staticmethod
-    def write_dir(set_dir):
+    def write_dir(set_dir) -> None:
         filePath = './settings.txt'
         if set_dir != Settings.read_dir():
             try:

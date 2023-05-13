@@ -37,7 +37,7 @@ class YoutubeObject(YouTube):
         self.dir.remove_tmp(self.audio)
 
     # ディスプレイリストをtuple(video_list, audio_list)で返す
-    def display_lists_set_to(self,frame):
+    def display_list_set(self,frame):
         self.video_list.set_list(frame)
         self.audio_list.set_list(frame)
 

@@ -10,14 +10,11 @@ class Directory():
     def __init__(self, download, title):
         self.download = download
         self.tmp = self.download + r"\tmp"
-        self.output = self.create_output(title)
+        self.output = self.__create_output(title)
 
-    def create_output(self, title):
-        title = self.title_escape(title)
+    def __create_output(self, title):
+        title = Title.escape(title)
         return self.download + "\\" + title + ".mp4"
-
-    def title_escape(self, title):
-        return Title.escape(title)
 
     def create_tmp(self):
         if not os.path.isdir(self.tmp):

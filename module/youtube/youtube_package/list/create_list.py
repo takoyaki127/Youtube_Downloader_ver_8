@@ -1,10 +1,11 @@
 from module.youtube.youtube_package.list.video_list import VideoList
 from module.youtube.youtube_package.list.audio_list import AudioList
+from module.youtube.youtube_package.directory import Directory
 
 
 class CreateList():
 
-    def __init__(self, data_list, streams, dir):
+    def __init__(self, data_list, streams, dir: Directory):
         self.__data_list = CreateList.__date_arrange(data_list)
         self.download = dir.get_download_obj(streams)
 

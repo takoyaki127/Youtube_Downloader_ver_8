@@ -46,7 +46,7 @@ class AudioList(MediaList):
     def __mimetype_arrange(mimetype:str, n):
         return mimetype.split(';')[n]
 
-    def get_audio(self, index):
+    def get_element(self, index):
         return Audio(self.list[index], self.download)
     
     def set_list(self,frame):

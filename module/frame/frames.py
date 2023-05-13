@@ -1,7 +1,6 @@
 import tkinter as tk
 from threading import Thread
-
-# from module.gui import Application
+from multiprocessing import Process
 
 from module.frame.frame1 import Frame1
 from module.frame.frame2 import Frame2
@@ -57,6 +56,6 @@ class Frames():
             Thread(target=self.wait, args=(p,)).start()
 
     # ダウンロードの終了を待機
-    def wait(self, p):
+    def wait(self, p:Process):
         p.join()
         self.__display_frame4()

@@ -84,6 +84,5 @@ class Frame1(Frame):
     def get_dir(self):
         return self.dir_str.get()
 
-    # youtube objectが作成されるまで100回ループ
     def create_object(self):
         return YoutubeObject(self.get_url(), self.get_dir())

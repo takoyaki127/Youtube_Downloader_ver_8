@@ -17,7 +17,7 @@ class YoutubeObject(YouTube):
 
     # インデックスを使ってダウンロード
     def __download(self, video_index, audio_index):
-        self.dir.write_settings()    # settings.txtを作成
+        self.dir.write_settings()   # settings.txtを作成
         self.dir.create_tmp()       # 一時保存用のフォルダを作成
 
         self.video = self.video_list.get_video(video_index)

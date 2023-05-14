@@ -37,8 +37,5 @@ class Audio(Media):
     def file_clip(self, tmp):
         return AudioFileClip(tmp + "\\" + self.filename)
     
-    def get_sampling_rate(self):
-        return self.__sampling_rate
-    
     def synthesis_state(self, video_bitrate):
         return SynthesisState(video_bitrate, self.bitrate, self.__sampling_rate)

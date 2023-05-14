@@ -21,9 +21,6 @@ class Media(metaclass=ABCMeta):
     def download(self):
         self.download_info.download(self.itag, self.filename)
 
-    def get_bitrate(self):
-        return self.bitrate
-
     def remove(self, tmp_dir):
         os.remove(tmp_dir + "\\" + self.filename)
 

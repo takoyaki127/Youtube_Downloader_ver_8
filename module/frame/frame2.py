@@ -1,7 +1,10 @@
 import tkinter as tk
+from tkinter import Listbox
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
 from module.youtube.youtube_object import YoutubeObject
+from module.youtube.youtube_package.download.index import Index
+from module.youtube.youtube_package.media.type import Type
 
 
 class Frame2(Frame):
@@ -52,49 +55,41 @@ class Frame2(Frame):
         self.video_list.bind('<<ListboxSelect>>', self.set_video_index)
         self.audio_list.bind('<<ListboxSelect>>', self.set_audio_index)
 
-    def update_video_label(self):
-        self.video_label["text"] = f"動画リスト index= {self.video_index}"
+    def update_label(self, type:type):
+        if type == Type.Video:
+            self.video_label["text"] = f"動画リスト index= {self.video_index}"
 
-    def update_audio_label(self):
-        self.audio_label["text"] = f"音声リスト index= {self.audio_index}"
-    
+        if type == Type.Audio:
+            self.audio_label["text"] = f"音声リスト index= {self.audio_index}"
+
     def set_video_list(self,video_list):
-        self.reset_video_list()
+        self.reset_media_list(self.video_list)
         for element in video_list:
             self.video_list.insert(tk.END, element)
 
     def set_audio_list(self,audio_list):
-        self.reset_audio_list()
+        self.reset_media_list(self.audio_list)
         for element in audio_list:
             self.audio_list.insert(tk.END, element)
 
-    def reset_video_list(self):
-        self.video_list.delete(0, tk.END)
-
-    def reset_audio_list(self):
-        self.audio_list.delete(0, tk.END)
+    def reset_media_list(self, media_list:Listbox):
+        media_list.delete(0, tk.END)
 
     def set_video_index(self, event):
         index = self.video_list.curselection()
         if len(index) == 1:
             self.video_index = index[0]
-            self.update_video_label()
+            self.update_label(Type.Video)
 
     def set_audio_index(self, event):
         index = self.audio_list.curselection()
         if len(index) == 1:
             self.audio_index = index[0]
-            self.update_audio_label()
+            self.update_label(Type.Audio)
 
-    def create_process(self,youtube:YoutubeObject):
-        return youtube.prepare_execute_process(
-            self.video_index,
-            self.audio_index
-        )
-
-    def canDownload(self):
+    def index(self):
         if self.video_index != -1 and self.audio_index != -1:
-            return True
-        return False
+            return Index(self.video_index, self.audio_index)
+        return None
 
 

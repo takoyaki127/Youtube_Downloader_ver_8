@@ -50,12 +50,5 @@ class Frames():
     # マルチプロセスでダウンロードを実行
     def __execute_download(self):
         if index := self.frame2.index():
-            p = index.create_process(self.youtube)
-            p.start()
+            index.start_process(self.youtube, self.__display_frame4)
             self.__display_frame3()
-            Thread(target=self.__wait, args=(p,)).start()
-
-    # ダウンロードの終了を待機
-    def __wait(self, p:Process):
-        p.join()
-        self.__display_frame4()

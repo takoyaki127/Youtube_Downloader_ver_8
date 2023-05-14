@@ -1,13 +1,21 @@
 from module.youtube.youtube_object import YoutubeObject
+from multiprocessing import Process
+from threading import Thread
 
 
 class Index():
     def __init__(self, video_index, audio_index) -> None:
-        self.__video_index = video_index
-        self.__audio_index = audio_index
+        self.__video = video_index
+        self.__audio = audio_index
 
-    def create_process(self, youtube: YoutubeObject):
-        return youtube.prepare_execute_process(
-            self.__video_index,
-            self.__audio_index
-        )
+    def start_process(self, youtube: YoutubeObject, display_frame):
+        p = Process(
+            target=youtube.execute,
+            args=(self.__video, self.__audio))
+        p.start()
+
+        Thread(target=self.__wait, args=(p, display_frame)).start()
+
+    def __wait(self, p: Process, display_frame):
+        p.join()
+        display_frame()

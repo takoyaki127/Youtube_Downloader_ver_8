@@ -20,11 +20,8 @@ class MediaList(metaclass=ABCMeta):
     def create_display_list(self):
         pass
 
-    def get_display_list(self):
-        return self.display_list
-    
     @abstractmethod
-    def set_list(self,frame):
+    def set_list(self, frame):
         pass
 
     @abstractmethod

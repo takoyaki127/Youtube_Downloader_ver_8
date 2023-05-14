@@ -1,6 +1,4 @@
 import tkinter as tk
-from threading import Thread
-from multiprocessing import Process
 
 from module.frame.frame1 import Frame1
 from module.frame.frame2 import Frame2

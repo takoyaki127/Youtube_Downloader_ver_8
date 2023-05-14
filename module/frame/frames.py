@@ -22,8 +22,8 @@ class Frames():
 
     def __set_command(self, root):
         self.frame1.btm.set_command(self.__display_frame2)
-        self.frame2.btm.set_command(self.execute_download, self.restart)
-        self.frame4.btm.set_command(root.destroy, self.restart)
+        self.frame2.btm.set_command(self.__execute_download, self.__restart)
+        self.frame4.btm.set_command(root.destroy, self.__restart)
 
     def __display_frame2(self):
         try:
@@ -38,7 +38,7 @@ class Frames():
     def __display_frame4(self):
         self.frame4.tkraise()
 
-    def restart(self):
+    def __restart(self):
         self.frame1.tkraise()
         self.frame1.url_entry.delete(0, tk.END)
 
@@ -48,14 +48,14 @@ class Frames():
         self.youtube.display_list_set(self.frame2)
 
     # マルチプロセスでダウンロードを実行
-    def execute_download(self):
-        if self.frame2.canDownload():
-            p = self.frame2.create_process(self.youtube)
+    def __execute_download(self):
+        if index := self.frame2.index():
+            p = index.create_process(self.youtube)
             p.start()
             self.__display_frame3()
-            Thread(target=self.wait, args=(p,)).start()
+            Thread(target=self.__wait, args=(p,)).start()
 
     # ダウンロードの終了を待機
-    def wait(self, p:Process):
+    def __wait(self, p:Process):
         p.join()
         self.__display_frame4()

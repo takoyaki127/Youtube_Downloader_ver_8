@@ -8,7 +8,7 @@ class Index():
         self.__video = video_index
         self.__audio = audio_index
 
-    def start_process(self, youtube: YoutubeObject, display_frame):
+    def start_process(self, youtube: YoutubeObject, display_frame=None):
         p = Process(
             target=youtube.execute,
             args=(self.__video, self.__audio))
@@ -18,4 +18,5 @@ class Index():
 
     def __wait(self, p: Process, display_frame):
         p.join()
-        display_frame()
+        if display_frame:
+            display_frame()

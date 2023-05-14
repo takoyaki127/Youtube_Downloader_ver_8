@@ -1,5 +1,4 @@
 from pytube import YouTube
-from multiprocessing import Process
 
 from module.youtube.youtube_package.directory import Directory
 from module.youtube.youtube_package.list.create_list import CreateList

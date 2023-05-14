@@ -3,12 +3,12 @@ from multiprocessing import Process
 from threading import Thread
 
 
-class Index():
+class ExecuteProcess():
     def __init__(self, video_index, audio_index) -> None:
         self.__video = video_index
         self.__audio = audio_index
 
-    def start_process(self, youtube: YoutubeObject, display_frame=None):
+    def start(self, youtube: YoutubeObject, display_frame=None):
         p = Process(
             target=youtube.execute,
             args=(self.__video, self.__audio))

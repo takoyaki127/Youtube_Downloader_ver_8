@@ -3,7 +3,7 @@ from tkinter import Listbox
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
 from module.youtube.youtube_object import YoutubeObject
-from module.youtube.youtube_package.download.index import Index
+from module.youtube.youtube_package.download.execute_process import ExecuteProcess
 from module.youtube.youtube_package.media.type import Type
 
 
@@ -89,7 +89,7 @@ class Frame2(Frame):
 
     def index(self):
         if self.video_index != -1 and self.audio_index != -1:
-            return Index(self.video_index, self.audio_index)
+            return ExecuteProcess(self.video_index, self.audio_index)
         return None
 
 

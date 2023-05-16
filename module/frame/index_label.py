@@ -1,6 +1,6 @@
 from tkinter import Label
 
-class Labels():
+class IndexLabel():
     def __init__(self, video:Label, audio:Label) -> None:
         self.__video = video
         self.__audio = audio

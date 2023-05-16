@@ -2,7 +2,7 @@ import tkinter as tk
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
 from module.frame.display_list import DisplayList
-from module.frame.labels import Labels
+from module.frame.index_label import IndexLabel
 from module.frame.index import Index
 
 
@@ -46,7 +46,7 @@ class Frame2(Frame):
         )
         self.audio_list.pack(fill='both')
 
-        label = Labels(self.video_label, self.audio_label)
+        label = IndexLabel(self.video_label, self.audio_label)
         self.index = Index(self.video_list, self.audio_list, label)
 
     def execute_process(self):

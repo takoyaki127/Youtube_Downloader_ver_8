@@ -1,12 +1,12 @@
 from tkinter import Listbox
 
-from module.frame.labels import Labels
+from module.frame.index_label import IndexLabel
 from module.youtube.youtube_package.media.type import Type
 from module.youtube.youtube_package.download.execute_process import ExecuteProcess
 
 
 class Index():
-    def __init__(self, video:Listbox, audio:Listbox, label:Labels) -> None:
+    def __init__(self, video:Listbox, audio:Listbox, label:IndexLabel) -> None:
         self.__video_box = video
         self.__audio_box = audio
         self.__label = label

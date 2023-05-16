@@ -14,9 +14,6 @@ class Frame2(Frame):
         self.audio_index = -1
         self.create_widget()
 
-    def set_youtube(self, youtube: YoutubeObject):
-        self.youtube = youtube
-
     def create_widget(self):
         self.btm = BottomFrame(self, '実行', '戻る')
         main = MainFrame(self, padx=20)

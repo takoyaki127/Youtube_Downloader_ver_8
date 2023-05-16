@@ -1,19 +1,17 @@
 import tkinter as tk
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
-from module.youtube.youtube_package.download.execute_process import ExecuteProcess
-from module.youtube.youtube_package.media.type import Type
 from module.frame.display_list import DisplayList
+from module.frame.labels import Labels
+from module.frame.index import Index
 
 
 class Frame2(Frame):
     def __init__(self, root=None, bg=None):
         super().__init__(root, bg)
-        self.video_index = -1
-        self.audio_index = -1
-        self.create_widget()
+        self.__create_widget()
 
-    def create_widget(self):
+    def __create_widget(self):
         self.btm = BottomFrame(self, '実行', '戻る')
         main = MainFrame(self, padx=20)
 
@@ -48,32 +46,11 @@ class Frame2(Frame):
         )
         self.audio_list.pack(fill='both')
 
-        self.video_list.bind('<<ListboxSelect>>', self.set_video_index)
-        self.audio_list.bind('<<ListboxSelect>>', self.set_audio_index)
+        label = Labels(self.video_label, self.audio_label)
+        self.index = Index(self.video_list, self.audio_list, label)
 
-    def update_label(self, type:type):
-        if type == Type.Video:
-            self.video_label["text"] = f"動画リスト index= {self.video_index}"
-
-        if type == Type.Audio:
-            self.audio_label["text"] = f"音声リスト index= {self.audio_index}"
-
-    def set_video_index(self, event):
-        index = self.video_list.curselection()
-        if len(index) == 1:
-            self.video_index = index[0]
-            self.update_label(Type.Video)
-
-    def set_audio_index(self, event):
-        index = self.audio_list.curselection()
-        if len(index) == 1:
-            self.audio_index = index[0]
-            self.update_label(Type.Audio)
-
-    def index(self):
-        if self.video_index != -1 and self.audio_index != -1:
-            return ExecuteProcess(self.video_index, self.audio_index)
-        return None
+    def execute_process(self):
+        return self.index.execute_process()
     
     def display_list(self):
         return DisplayList(self.video_list, self.audio_list)

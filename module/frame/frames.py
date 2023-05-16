@@ -48,6 +48,6 @@ class Frames():
 
     # マルチプロセスでダウンロードを実行
     def __execute_download(self):
-        if process := self.frame2.index():
+        if process := self.frame2.execute_process():
             process.start(self.youtube, self.__display_frame4)
             self.__display_frame3()

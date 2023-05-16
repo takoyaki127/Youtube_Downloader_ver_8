@@ -77,5 +77,3 @@ class Frame2(Frame):
     
     def display_list(self):
         return DisplayList(self.video_list, self.audio_list)
-
-

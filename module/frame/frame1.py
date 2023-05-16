@@ -3,7 +3,7 @@ from tkinter import filedialog
 
 from module.youtube.youtube_package.settings import Settings
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
-from module.youtube.youtube_object import YoutubeObject
+from module.frame.create_youtube import CreateYouTube
 
 
 class Frame1(Frame):
@@ -78,7 +78,5 @@ class Frame1(Frame):
         except Exception:
             print("ペーストできません")
 
-    def create_object(self):
-        url = self.url_str.get()
-        dir = self.dir_str.get()
-        return YoutubeObject(url, dir)
+    def entry_val(self):
+        return CreateYouTube(self.url_str, self.dir_str)

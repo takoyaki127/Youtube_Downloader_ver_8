@@ -14,6 +14,8 @@ class Frames():
         self.frame3 = Frame3(root)
         self.frame4 = Frame4(root)
 
+        self.create_youtube = self.frame1.entry_val()
+
         # buttonにメソッドをセット
         self.__set_command(root)
         self.frame1.tkraise()
@@ -42,7 +44,7 @@ class Frames():
 
     # youtubeオブジェクトを作成して表示用リストに追加
     def __create_youtube(self):
-        self.youtube = self.frame1.create_object()
+        self.youtube = self.create_youtube.create()
         display_list = self.frame2.display_list()
         self.youtube.display(display_list)
 

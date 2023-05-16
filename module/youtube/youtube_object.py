@@ -35,10 +35,9 @@ class YoutubeObject(YouTube):
         self.dir.remove_tmp(self.video)
         self.dir.remove_tmp(self.audio)
 
-    # ディスプレイリストをtuple(video_list, audio_list)で返す
-    def display_list_set(self,frame):
-        self.video_list.set_list(frame)
-        self.audio_list.set_list(frame)
+    def display(self, display):
+        self.video_list.set(display)
+        self.audio_list.set(display)
 
     # ダウンロードから削除までの一通りを行う
     def execute(self, video_index, audio_index):

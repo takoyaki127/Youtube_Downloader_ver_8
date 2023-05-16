@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
 
-
 class MediaList(metaclass=ABCMeta):
     def __init__(self, list, mimeType, download):
         self.list = self.list_arrange(list, mimeType)
@@ -21,11 +20,9 @@ class MediaList(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def set_list(self, frame):
+    def set(self, display):
         pass
 
     @abstractmethod
     def get_element(self, index):
         pass
-
-

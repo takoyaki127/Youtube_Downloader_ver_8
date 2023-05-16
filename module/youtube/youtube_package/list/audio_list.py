@@ -1,5 +1,7 @@
 from module.youtube.youtube_package.list.media_list import MediaList
 from module.youtube.youtube_package.media.audio import Audio
+from module.frame.display_list import DisplayList
+
 
 class AudioList(MediaList):
 
@@ -48,6 +50,6 @@ class AudioList(MediaList):
 
     def get_element(self, index):
         return Audio(self.list[index], self.download)
-    
-    def set_list(self,frame):
-        frame.set_audio_list(self.display_list)
+
+    def set(self, display:DisplayList):
+        display.set_audio(self.display_list)

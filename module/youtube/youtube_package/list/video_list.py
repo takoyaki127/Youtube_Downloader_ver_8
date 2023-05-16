@@ -1,6 +1,6 @@
 from module.youtube.youtube_package.list.media_list import MediaList
 from module.youtube.youtube_package.media.video import Video
-
+from module.frame.display_list import DisplayList
 
 class VideoList(MediaList):
 
@@ -26,5 +26,5 @@ class VideoList(MediaList):
     def get_element(self, index):
         return Video(self.list[index], self.download)
 
-    def set_list(self, frame):
-        frame.set_video_list(self.display_list)
+    def set(self, display:DisplayList):
+        display.set_video(self.display_list)

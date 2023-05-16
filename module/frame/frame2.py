@@ -1,10 +1,9 @@
 import tkinter as tk
-from tkinter import Listbox
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
-from module.youtube.youtube_object import YoutubeObject
 from module.youtube.youtube_package.download.execute_process import ExecuteProcess
 from module.youtube.youtube_package.media.type import Type
+from module.frame.display_list import DisplayList
 
 
 class Frame2(Frame):
@@ -59,19 +58,6 @@ class Frame2(Frame):
         if type == Type.Audio:
             self.audio_label["text"] = f"音声リスト index= {self.audio_index}"
 
-    def set_video_list(self,video_list):
-        self.reset_media_list(self.video_list)
-        for element in video_list:
-            self.video_list.insert(tk.END, element)
-
-    def set_audio_list(self,audio_list):
-        self.reset_media_list(self.audio_list)
-        for element in audio_list:
-            self.audio_list.insert(tk.END, element)
-
-    def reset_media_list(self, media_list:Listbox):
-        media_list.delete(0, tk.END)
-
     def set_video_index(self, event):
         index = self.video_list.curselection()
         if len(index) == 1:
@@ -88,5 +74,8 @@ class Frame2(Frame):
         if self.video_index != -1 and self.audio_index != -1:
             return ExecuteProcess(self.video_index, self.audio_index)
         return None
+    
+    def display_list(self):
+        return DisplayList(self.video_list, self.audio_list)
 
 

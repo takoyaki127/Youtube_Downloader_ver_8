@@ -43,7 +43,8 @@ class Frames():
     # youtubeオブジェクトを作成して表示用リストに追加
     def __create_youtube(self):
         self.youtube = self.frame1.create_object()
-        self.youtube.display_list_set(self.frame2)
+        display_list = self.frame2.display_list()
+        self.youtube.display(display_list)
 
     # マルチプロセスでダウンロードを実行
     def __execute_download(self):

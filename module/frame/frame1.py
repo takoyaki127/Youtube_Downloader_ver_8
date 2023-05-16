@@ -9,10 +9,10 @@ from module.youtube.youtube_object import YoutubeObject
 class Frame1(Frame):
     def __init__(self, root=None, bg=None):
         super().__init__(root, bg)
-        default_dir = Settings.read_dir()
-        self.create_widget(default_dir)
+        self.default_dir = Settings.read_dir()
+        self.create_widget()
 
-    def create_widget(self, default_dir):
+    def create_widget(self):
         self.btm = BottomFrame(self, '次へ')
         main = MainFrame(self, padx=20)
 
@@ -33,7 +33,7 @@ class Frame1(Frame):
         )
         dir_btn.pack(side='right', ipadx=10)
 
-        self.dir_str = tk.StringVar(value=default_dir)
+        self.dir_str = tk.StringVar(value=self.default_dir)
         self.dir_entry = tk.Entry(
             dir_frame,
             textvariable=self.dir_str,

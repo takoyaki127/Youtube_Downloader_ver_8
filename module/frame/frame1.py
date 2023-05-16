@@ -78,12 +78,6 @@ class Frame1(Frame):
         except Exception:
             print("ペーストできません")
 
-    # def get_url(self):
-    #     return self.url_str.get()
-
-    # def get_dir(self):
-    #     return self.dir_str.get()
-
     def create_object(self):
         url = self.url_str.get()
         dir = self.dir_str.get()

@@ -33,11 +33,14 @@ class Index():
     def __update_label(self, type:type):
         if type == Type.Video:
             self.__label.update_video(self.__video)
+            return
 
         if type == Type.Audio:
             self.__label.update_audio(self.__audio)
+            return
 
     def execute_process(self):
         if self.__video != -1 and self.__audio != -1:
             return ExecuteProcess(self.__video, self.__audio)
+        
         return None

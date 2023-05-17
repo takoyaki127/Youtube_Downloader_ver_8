@@ -53,3 +53,8 @@ class Frames():
         if process := self.frame2.execute_process():
             process.start(self.youtube, self.__display_frame4)
             self.__display_frame3()
+            self.__explorer_set_command()
+
+    def __explorer_set_command(self):
+        explorer_btn = self.frame4.explorer_btn()
+        self.youtube.explorer_set_command(explorer_btn)

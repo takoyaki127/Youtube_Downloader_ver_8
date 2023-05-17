@@ -44,3 +44,6 @@ class YoutubeObject(YouTube):
         self.__download(video_index, audio_index)
         self.__synthesis()
         self.__remove()
+
+    def explorer_set_command(self, btn):
+        self.__dir.explorer(btn)

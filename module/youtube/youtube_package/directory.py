@@ -9,12 +9,12 @@ from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 class Directory():
     def __init__(self, download, title):
         self.__download = download
-        self.__tmp = self.__download + r"\tmp"
+        self.__tmp = self.__download + r"/tmp"
         self.__output = self.__create_output(title)
 
     def __create_output(self, title):
         title = Title.escape(title)
-        return self.__download + "\\" + title + ".mp4"
+        return self.__download + "/" + title + ".mp4"
 
     def create_tmp(self):
         if not os.path.isdir(self.__tmp):

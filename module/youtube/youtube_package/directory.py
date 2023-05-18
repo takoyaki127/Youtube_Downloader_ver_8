@@ -25,7 +25,7 @@ class Directory():
     def write_settings(self):
         Settings.write_dir(self.__download)
 
-    def get_download_obj(self, stream):
+    def download_obj(self, stream):
         return Download(stream, self.__tmp)
 
     def remove_tmp(self, media: Media):

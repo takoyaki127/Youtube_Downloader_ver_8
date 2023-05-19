@@ -4,7 +4,7 @@ class Settings():
 
     @staticmethod
     def read_dir() -> str:
-        filePath = './settings.txt'
+        filePath = r'.\settings.txt'
         if os.path.isfile(filePath) == True:
             with open(filePath, 'r', encoding='utf-8') as f:
                 str_ = f.read()
@@ -15,7 +15,7 @@ class Settings():
 
     @staticmethod
     def write_dir(set_dir) -> None:
-        filePath = './settings.txt'
+        filePath = r'.\settings.txt'
         if set_dir != Settings.read_dir():
             try:
                 with open(filePath, 'w', encoding='utf-8') as f:

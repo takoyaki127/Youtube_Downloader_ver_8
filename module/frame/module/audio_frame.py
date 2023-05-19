@@ -7,15 +7,15 @@ class AudioFrame():
     def __init__(self, root, label_font, listbox_font) -> None:
         self.__frame = tk.Frame(root)
         self.__frame.pack(expand=1, fill='both')
-        self.add_label(label_font)
-        self.add_listbox(listbox_font)
+        self.__add_label(label_font)
+        self.__add_listbox(listbox_font)
 
     
-    def add_label(self, font):
+    def __add_label(self, font):
         self.__label = tk.Label(self.__frame, text='音声リスト', font=font)
         self.__label.pack(anchor='nw')
 
-    def add_listbox(self, font):
+    def __add_listbox(self, font):
         self.__listbox = tk.Listbox(
             self.__frame,
             font=font,

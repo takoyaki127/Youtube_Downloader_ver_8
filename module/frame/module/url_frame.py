@@ -5,15 +5,15 @@ class URLFrame():
         self.__root = root
         self.__url_frame = tk.Frame(root)
         self.__url_frame.pack(expand=1, fill='x')
-        self.add_label(label_font)
-        self.add_button()
-        self.add_entry(entry_font)
+        self.__add_label(label_font)
+        self.__add_button()
+        self.__add_entry(entry_font)
 
-    def add_label(self, font):
+    def __add_label(self, font):
         url_label = tk.Label(self.__url_frame, text='URLを入力', font=font)
         url_label.pack(anchor='nw')
 
-    def add_button(self):
+    def __add_button(self):
         self.__img = tk.PhotoImage(file="./img/paste_icon.png")
         url_btn = tk.Button(
             self.__url_frame,
@@ -23,7 +23,7 @@ class URLFrame():
         )
         url_btn.pack(side='right', ipadx=10)
 
-    def add_entry(self, font):
+    def __add_entry(self, font):
         self.__string_var = tk.StringVar()
         entry = tk.Entry(
             self.__url_frame,

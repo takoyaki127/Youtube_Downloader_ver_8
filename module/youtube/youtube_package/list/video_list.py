@@ -12,7 +12,7 @@ class VideoList(MediaList):
     def create_display_list(self):
         return CreateVideoList.create(self.list)
 
-    def get_element(self, index):
+    def element(self, index):
         return Video(self.list[index], self.download)
 
     def set(self, display:DisplayList):

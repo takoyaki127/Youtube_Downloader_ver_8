@@ -11,7 +11,7 @@ class AudioList(MediaList):
     def create_display_list(self):
         return CreateAudioList.create(self.list)
 
-    def get_element(self, index):
+    def element(self, index):
         return Audio(self.list[index], self.download)
 
     def set(self, display:DisplayList):

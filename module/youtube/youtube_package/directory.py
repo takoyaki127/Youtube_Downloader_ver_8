@@ -5,7 +5,6 @@ from module.youtube.youtube_package.media.media import Media
 from module.youtube.youtube_package.title.title import Title
 from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 from module.youtube.youtube_package.open_folder import Explorer
-from module.frame.module.explorer_btn import ExplorerButton
 
 
 class Directory():
@@ -25,13 +24,13 @@ class Directory():
     def write_settings(self):
         Settings.write_dir(self.__download)
 
-    def download_obj(self, stream):
+    def create_download(self, stream):
         return Download(stream, self.__tmp)
 
     def remove_tmp(self, media: Media):
         media.remove(self.__tmp)
 
-    def synthesis_obj(self, video, audio):
+    def create_synthesis(self, video, audio):
         return Synthesis(self.__tmp, self.__output, video, audio)
     
     def explorer(self):

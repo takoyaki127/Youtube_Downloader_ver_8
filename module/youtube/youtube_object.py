@@ -19,15 +19,15 @@ class YoutubeObject(YouTube):
         self.__dir.write_settings()   # settings.txtを作成
         self.__dir.create_tmp()       # 一時保存用のフォルダを作成
 
-        self.__video = self.__video_list.get_element(video_index)
-        self.__audio = self.__audio_list.get_element(audio_index)
+        self.__video = self.__video_list.element(video_index)
+        self.__audio = self.__audio_list.element(audio_index)
         
         self.__video.download()
         self.__audio.download()
 
     # 動画ファイルと音声ファイルを合成
     def __synthesis(self):
-        synthesis = self.__dir.synthesis_obj(self.__video, self.__audio)
+        synthesis = self.__dir.create_synthesis(self.__video, self.__audio)
         synthesis.execute()
 
     # 合成前に使ったファイルを削除

@@ -24,5 +24,5 @@ class MediaList(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def get_element(self, index):
+    def element(self, index):
         pass

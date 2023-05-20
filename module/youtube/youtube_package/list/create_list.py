@@ -7,7 +7,7 @@ class CreateList():
 
     def __init__(self, data_list, streams, dir: Directory):
         self.__data_list = CreateList.__date_arrange(data_list)
-        self.__download = dir.download_obj(streams)
+        self.__download = dir.create_download(streams)
 
     @staticmethod
     def __date_arrange(data_list):

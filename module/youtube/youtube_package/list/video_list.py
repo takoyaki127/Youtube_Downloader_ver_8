@@ -1,6 +1,6 @@
 from module.youtube.youtube_package.list.media_list import MediaList
 from module.youtube.youtube_package.media.video import Video
-from module.frame.display_list import DisplayList
+from module.frame.module.display_list import DisplayList
 from module.youtube.youtube_package.list.create_video_list import CreateVideoList
 
 class VideoList(MediaList):

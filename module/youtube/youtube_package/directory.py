@@ -5,7 +5,7 @@ from module.youtube.youtube_package.media.media import Media
 from module.youtube.youtube_package.title.title import Title
 from module.youtube.youtube_package.synthesis.synthesis import Synthesis
 from module.youtube.youtube_package.open_folder import Explorer
-from module.frame.explorer_btn import ExplorerButton
+from module.frame.module.explorer_btn import ExplorerButton
 
 
 class Directory():
@@ -34,5 +34,5 @@ class Directory():
     def synthesis_obj(self, video, audio):
         return Synthesis(self.__tmp, self.__output, video, audio)
     
-    def explorer(self, btn:ExplorerButton):
-        btn.set_command(Explorer(self.__download).open)
+    def explorer(self):
+        return Explorer(self.__download)

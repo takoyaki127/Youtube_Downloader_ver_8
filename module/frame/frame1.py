@@ -1,7 +1,7 @@
 import tkinter as tk
 
 from module.frame.base.BaseFrame import Frame, BottomFrame, MainFrame
-from module.frame.create_youtube import CreateYouTube
+from module.frame.module.create_youtube import CreateYouTube
 from module.frame.module.url_frame import URLFrame
 from module.frame.module.directory_frame import DirectlyFrame
 
@@ -23,3 +23,6 @@ class Frame1(Frame):
 
     def entry_val(self):
         return CreateYouTube(self.__url_frame, self.__dir_frame)
+    
+    def url_reset(self):
+        self.__url_frame.entry_reset()

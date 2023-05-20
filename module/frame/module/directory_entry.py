@@ -5,13 +5,13 @@ from tkinter import filedialog
 class DirectoryEntry():
     def __init__(self, frame, font) -> None:
         self.__string_var = self.__create_string_var()
-        self.__entry = self.__create_entry(frame, self.__string_var, font)
+        self.__entry = self.__create_entry(frame, font)
         self.__entry.pack(side='right', expand=1, fill='x')
 
-    def __create_entry(self, frame, str_, font):
+    def __create_entry(self, frame, font):
         return tk.Entry(
             frame,
-            textvariable=str_,
+            textvariable=self.__string_var,
             font=font
         )
     

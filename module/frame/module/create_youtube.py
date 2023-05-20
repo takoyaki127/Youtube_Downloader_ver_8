@@ -1,9 +1,9 @@
 from module.youtube.youtube_object import YoutubeObject
-from module.frame.module.directory_entry import DirectoryEntry
+from module.frame.module.directory_frame import DirectlyFrame
 from module.frame.module.url_frame import URLFrame
 
 class CreateYouTube():
-    def __init__(self, url:URLFrame, dir:DirectoryEntry) -> None:
+    def __init__(self, url:URLFrame, dir:DirectlyFrame) -> None:
         self.__url = url
         self.__dir = dir
 

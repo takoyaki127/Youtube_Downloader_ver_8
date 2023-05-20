@@ -40,7 +40,7 @@ class Frames():
 
     def __restart(self):
         self.frame1.tkraise()
-        self.frame1.url_entry.delete(0, tk.END)
+        self.frame1.url_reset()
 
     # youtubeオブジェクトを作成して表示用リストに追加
     def __create_youtube(self):
@@ -56,5 +56,5 @@ class Frames():
             self.__explorer_set_command()
 
     def __explorer_set_command(self):
-        explorer_btn = self.frame4.explorer_btn()
-        self.youtube.explorer_set_command(explorer_btn)
+        explorer = self.youtube.explorer()
+        self.frame4.explorer_btn(explorer)

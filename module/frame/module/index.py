@@ -1,6 +1,6 @@
 from tkinter import Listbox
 
-from module.frame.index_label import IndexLabel
+from module.frame.module.index_label import IndexLabel
 from module.youtube.youtube_package.media.type import Type
 from module.youtube.youtube_package.download.execute_process import ExecuteProcess
 

@@ -1,7 +1,7 @@
 import tkinter as tk
-from module.frame.display_list import DisplayList
-from module.frame.index import Index
-from module.frame.index_label import IndexLabel
+from module.frame.module.display_list import DisplayList
+from module.frame.module.index import Index
+from module.frame.module.index_label import IndexLabel
 
 class AudioFrame():
     def __init__(self, root, label_font, listbox_font) -> None:

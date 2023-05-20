@@ -45,5 +45,5 @@ class YoutubeObject(YouTube):
         self.__synthesis()
         self.__remove()
 
-    def explorer_set_command(self, btn):
-        self.__dir.explorer(btn)
+    def explorer(self):
+        return self.__dir.explorer()

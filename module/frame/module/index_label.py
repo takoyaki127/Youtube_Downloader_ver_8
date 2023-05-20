@@ -6,11 +6,11 @@ class IndexLabel():
         self.__audio = audio
 
     def update_video(self, index):
-        self.__video["text"] = self.create_text("動画", index)
+        self.__video["text"] = self.__create_text("動画", index)
 
     def update_audio(self, index):
-        self.__audio["text"] = self.create_text("音声", index)
+        self.__audio["text"] = self.__create_text("音声", index)
 
     @staticmethod
-    def create_text(type, index):
-        return f"{type}リスト index={index}"
+    def __create_text(type_, index):
+        return f"{type_}リスト index={index}"

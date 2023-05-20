@@ -25,12 +25,12 @@ class URLFrame():
 
     def __add_entry(self, font):
         self.__string_var = tk.StringVar()
-        entry = tk.Entry(
+        self.__entry = tk.Entry(
             self.__url_frame,
             textvariable=self.__string_var,
             font=font
         )
-        entry.pack(side='right', expand=1, fill='x')
+        self.__entry.pack(side='right', expand=1, fill='x')
 
     def paste(self):
         try:
@@ -40,3 +40,6 @@ class URLFrame():
 
     def get(self):
         return self.__string_var.get()
+    
+    def entry_reset(self):
+        self.__entry.delete(0, tk.END)
